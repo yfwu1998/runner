@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/runner.iml" filepath="$PROJECT_DIR$/runner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/runner-admin/runner-admin.iml" filepath="$PROJECT_DIR$/runner-admin/runner-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/runner-api/runner-api.iml" filepath="$PROJECT_DIR$/runner-api/runner-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/runner-core/runner-core.iml" filepath="$PROJECT_DIR$/runner-core/runner-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/runner-web/runner-web.iml" filepath="$PROJECT_DIR$/runner-web/runner-web.iml" />
     </modules>
   </component>
 </project>

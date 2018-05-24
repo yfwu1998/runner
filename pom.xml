@@ -10,6 +10,8 @@
     <modules>
         <module>runner-core</module>
         <module>runner-api</module>
+        <module>runner-admin</module>
+        <module>runner-web</module>
     </modules>
 
     <!--声明该项目是父级项目, 项目的打包类型：pom、jar、war-->

@@ -1,9 +1,9 @@
-package com.wuyifeng.runner.api;
+package com.wuyifeng.runner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.wuyifeng.runner")
+@SpringBootApplication
 public class RunnerApiApplication {
 
     public static void main(String[] args) {
