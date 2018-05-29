@@ -1,0 +1,19 @@
+## mysql创建utf-8字符集数据库
+##CREATE DATABASE runner DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+spring:
+  datasource:  #设置数据源
+    driver-class-name: com.mysql.jdbc.Driver #驱动程序
+    url: jdbc:mysql://localhost:3306/runner?useUnicode=true&characterEncoding=UTF-8 #连接字符串
+    username: root #用户名
+    password:  #密码
+  jpa:  #JPA配置
+    show-sql: true #在控制台显示sql
+    hibernate:
+      ddl-auto: update # 第一次建表create  后面用update
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false #开发时关闭缓存,不然没法看到实时页面
+server:
+  port: 8089
