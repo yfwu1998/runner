@@ -15,7 +15,7 @@ public class Customer {
     private Long id;
 
     //用户名
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String username;
 
     //昵称
@@ -27,6 +27,8 @@ public class Customer {
 
     // 员工类型（1：普通顾客，2：配送员）
     private Integer type = 1;
+
+    private Integer applyStatus = 0;//申请状态（0：默认没有申请，1：申请中，2：通过申请，9：不通过）
     // 手机号码
     @Column(length = 50)
     private String mobile;
@@ -101,5 +103,13 @@ public class Customer {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public Integer getApplyStatus() {
+        return applyStatus;
+    }
+
+    public void setApplyStatus(Integer applyStatus) {
+        this.applyStatus = applyStatus;
     }
 }
