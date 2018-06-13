@@ -1,5 +1,7 @@
 package com.wuyifeng.runner.core.service;
 
+import com.wuyifeng.runner.core.domain.Manager;
+
 public interface ManagerService {
 
     /**
@@ -8,14 +10,14 @@ public interface ManagerService {
      * @param password
      * @return
      */
-    public ManagerService login(String username, String password);
+    public Manager login(String username, String password);
 
     /**
      * 通过ID获取管理员信息
      * @param id
      * @return
      */
-    public ManagerService get(Long id);
+    public Manager get(Long id);
 
     /**
      * 修改密码
@@ -23,5 +25,5 @@ public interface ManagerService {
      * @param newPwd
      * @return
      */
-    public ManagerService modifyPwd(Long id, String newPwd);
+    public Manager modifyPwd(Long id, String newPwd);
 }

@@ -4,7 +4,6 @@ import com.wuyifeng.runner.core.domain.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-
 public interface CustomerService {
 
     /**
@@ -58,5 +57,7 @@ public interface CustomerService {
      * @return
      */
     public Boolean confirmToDistributor(Long id, Integer status) throws Exception;
+
+//    注册、登录、顾客列表（分页）、顾客详情、修改顾客，申请配送资格，确认配送资格
 
 }

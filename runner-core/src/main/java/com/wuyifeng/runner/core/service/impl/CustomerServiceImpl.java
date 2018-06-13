@@ -1,14 +1,15 @@
 package com.wuyifeng.runner.core.service.impl;
 
-
 import com.wuyifeng.runner.core.domain.Customer;
 import com.wuyifeng.runner.core.repository.CustomerRepository;
 import com.wuyifeng.runner.core.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-public class CustomerServiceImpl implements CustomerService {
+@Service
+public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -30,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer get(Long id) {
-        return customerRepository.findOne(id);
+        return customerRepository.getOne(id);
     }
 
     @Override
@@ -51,7 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Boolean confirmToDistributor(Long id, Integer status) throws Exception {
-
         //通过id获取顾客信息
         Customer customer = customerRepository.findOne(id);
         //修改申请状态

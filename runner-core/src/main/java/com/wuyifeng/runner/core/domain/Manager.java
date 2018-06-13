@@ -12,7 +12,7 @@ public class Manager {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String username;
 
     @Column(length = 50)
@@ -24,6 +24,12 @@ public class Manager {
     private String mobile;
 
     private Integer status;
+
+    public Manager(){}
+
+    public Manager(Long id){
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

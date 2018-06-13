@@ -68,7 +68,7 @@ public class Order {
     // 评价内容
     private String evaluateContent;
     // 状态（1：下单成功、2：已指派、3：配送中、4：已送达、5：已收货、6：已评价，-1：删除）
-    public Integer status;
+    public Integer status = 1;
 
     public Long getId() {
         return id;

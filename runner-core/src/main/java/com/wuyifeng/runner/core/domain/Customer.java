@@ -40,6 +40,14 @@ public class Customer {
 
     private Integer status = 1;//数据状态(-1:删除，0：禁用，1：正常),状态删除标识
 
+    //构造函数
+    //无参数的构造函数(规定动作)
+    public Customer() {
+    }
+
+    public Customer(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
