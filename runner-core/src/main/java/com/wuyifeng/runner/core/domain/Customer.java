@@ -49,6 +49,13 @@ public class Customer {
         this.id = id;
     }
 
+    public Customer(String username, String nickname, String password, String mobile){
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+        this.mobile = mobile;
+    }
+
     public Long getId() {
         return id;
     }
