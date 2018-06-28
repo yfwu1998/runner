@@ -1,12 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>客户下单页面</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <style type="text/css" rel="stylesheet">
+
+    </style>
 </head>
 <body>
-<h1>下单页面</h1>
-<p>您好, <span th:text="${session.customer.nickname}"></span>
-</p>
+<!-- 导航条-->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">哪都通跑腿</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarsExample03" style="">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">我要下单</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">我的订单</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">哪都通跑腿</h1>
+        <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap
+            example.
+            It's built with default Bootstrap components and utilities with little customization.</p>
+    </div>
+    <div class="container">
+        <!--<div class="card-deck mb-3 text-center">-->
+            <!--<div class=" mb-4 box-shadow">-->
+                <!--<a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-outline-primary">帮我买</a>-->
+            <!--</div>-->
+            <!--<div class=" mb-4 box-shadow">-->
+                <!--<a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-primary">帮我送</a>-->
+            <!--</div>-->
+            <!--<div class=" mb-4 box-shadow">-->
+                <!--<a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-primary">帮我取</a>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>帮我买</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                    magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" th:href="@{/order/addForSell}" role="button">去下单 &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>帮我送</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
+                    magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" th:href="@{/order/addForDeliver}" role="button">去下单 &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>帮我取</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id
+                    ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+                    condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <p><a class="btn btn-secondary" th:href="@{/order/addForTake}" role="button">去下单 &raquo;</a></p>
+            </div>
+        </div>
+
+
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img class="mb-2" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt=""
+                         width="24"
+                         height="24"/>
+                    <small class="d-block mb-3 text-muted">© 2017-2018</small>
+                </div>
+                <div class="col-6 col-md">
+
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Cool stuff</a></li>
+                        <li><a class="text-muted" href="#">Random feature</a></li>
+                        <li><a class="text-muted" href="#">Team feature</a></li>
+                        <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                        <li><a class="text-muted" href="#">Another one</a></li>
+                        <li><a class="text-muted" href="#">Last time</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Resource</a></li>
+                        <li><a class="text-muted" href="#">Resource name</a></li>
+                        <li><a class="text-muted" href="#">Another resource</a></li>
+                        <li><a class="text-muted" href="#">Final resource</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="#">Team</a></li>
+                        <li><a class="text-muted" href="#">Locations</a></li>
+                        <li><a class="text-muted" href="#">Privacy</a></li>
+                        <li><a class="text-muted" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>
