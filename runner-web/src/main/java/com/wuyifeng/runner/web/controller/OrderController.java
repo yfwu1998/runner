@@ -206,6 +206,47 @@ public class OrderController {
         model.addAttribute("page", page);
         return "order/lists";
     }
+    @GetMapping("/detail")
+    public String detail(@RequestParam Long id, Model model){
+        Order order = orderService.get(id);
+        model.addAttribute("order", order);
+        return "order/detail";
+    }
+
+    @GetMapping("/confirm")
+    public String confirm(@RequestParam Long id, Model model){
+
+        //1.先去调用顾客确认方法
+        orderService.confirmByCustomer(id);
+
+        //2.再去查询订单信息，跳转到详情页面
+        Order order = orderService.get(id);
+        model.addAttribute("tip", "您已确认收货，欢迎继续使用");
+        model.addAttribute("order", order);
+        return "order/detail";
+    }
+    //进入评价页面
+    @GetMapping("/evaluate")
+    public String evaluate(@RequestParam Long id, Model model){
+        Order order = orderService.get(id);
+        model.addAttribute("order", order);
+        return "order/evaluate";
+    }
+
+    //执行评价操作
+    @PostMapping("/evaluate")
+    public String evaluate(@RequestParam Long id, @RequestParam String evaluateContent, Model model){
+        //0.TODO:空值检查,检查不通过，跳转到评价页面
+
+        //1.执行评价操作
+        orderService.evaluate(id, evaluateContent);
+
+        //2.再去查询订单信息，跳转到详情页面
+        Order order = orderService.get(id);
+        model.addAttribute("tip", "您已评价成功，欢迎继续使用");
+        model.addAttribute("order", order);
+        return "order/detail";
+    }
 
     private String getErrorMessage(BindingResult bindingResult){
         StringBuilder errorMsg = new StringBuilder();

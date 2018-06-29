@@ -23,10 +23,10 @@
 
     <div class="navbar-collapse collapse" id="navbarsExample03" style="">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-order">
                 <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-order active">
                 <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
             </li>
         </ul>
@@ -40,6 +40,7 @@
 </div>
 <div class="container">
     <div class="row">
+        <div th:if="${tip} != null" class="alert alert-success" th:text="${tip}"></div>
         <table class="table">
             <thead>
             <tr>
@@ -53,49 +54,78 @@
                 <th>取货地址</th>
                 <th>买货商店</th>
                 <th>订单状态</th>
-                <th>操作</th>
+
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item : ${page.content}">
+            <tr>
                 <td>#</td>
                 <td>
-                    <span th:if="${item.type == 1}">帮买</span>
-                    <span th:if="${item.type == 2}">帮送</span>
-                    <span th:if="${item.type == 3}">帮取</span>
+                    <span th:if="${order.type == 1}">帮买</span>
+                    <span th:if="${order.type == 2}">帮送</span>
+                    <span th:if="${order.type == 3}">帮取</span>
                 </td>
-                <td th:text="${item.consignee}">#</td>
-                <td th:text="${item.consigneeMobile}">#</td>
-                <td th:text="${item.consigner}">#</td>
-                <td th:text="${item.consignerMobile}">#</td>
-                <td th:text="${item.goods}">#</td>
-                <td th:text="${item.pickupAddress}">#</td>
-                <td th:text="${item.store}">#</td>
+                <td th:text="${order.consignee}">#</td>
+                <td th:text="${order.consigneeMobile}">#</td>
+                <td th:text="${order.consigner}">#</td>
+                <td th:text="${order.consignerMobile}">#</td>
+                <td th:text="${order.goods}">#</td>
+                <td th:text="${order.pickupAddress}">#</td>
+                <td th:text="${order.store}">#</td>
                 <td>
-                    <span th:if="${item.status == 1}">下单成功</span>
-                    <span th:if="${item.status == 2}">已指派</span>
-                    <span th:if="${item.status == 3}">配送中</span>
-                    <span th:if="${item.status == 4}">已送达</span>
-                    <span th:if="${item.status == 5}">已收货</span>
-                    <span th:if="${item.status == 6}">已评价</span>
-                </td>
-                <td>
-                    <a th:href="@{/order/detail(id=${item.id})}">详情</a>
-                    <a th:href="@{/order/confirm(id=${item.id})}">确认收货</a>
-                    <a th:href="@{/order/evaluate(id=${item.id})}">评价</a>
+                    <span th:if="${order.status == 1}">下单成功</span>
+                    <span th:if="${order.status == 2}">已指派</span>
+                    <span th:if="${order.status == 3}">配送中</span>
+                    <span th:if="${order.status == 4}">已送达</span>
+                    <span th:if="${order.status == 5}">已收货</span>
+                    <span th:if="${order.status == 6}">已评价</span>
                 </td>
             </tr>
             </tbody>
-            <tfoot>
+        </table>
+        <table class="table">
+            <thead>
             <tr>
-                <td colspan="10">
-                    <a th:href="@{/order/lists(start=0)}">[首页]</a>&nbsp;&nbsp;
-                    <a th:if="${not page.isFirst()}" th:href="@{/order/lists(start=${page.number-1})}">[上页]</a>&nbsp;&nbsp;
-                    <a th:if="${not page.isLast()}" th:href="@{/order/lists(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
-                    <a th:href="@{/order/lists(start=${page.totalPages-1})}">[末页]</a>
-                </td>
+                <th>操作类型</th>
+                <th>操作内容</th>
+                <th>操作用户</th>
+                <th>操作时间</th>
             </tr>
-            </tfoot>
+            </thead>
+            <tbody>
+            <tr>
+                <td>下单</td>
+                <td></td>
+                <td th:text="${order.creator.nickname}"></td>
+                <td th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+
+            <tr th:if="${order.status >=2}">
+                <td>指派</td>
+                <td></td>
+                <td th:text="${order.assignor.nickname}"></td>
+                <td th:text="${#dates.format(order.assignTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            <tr th:if="${order.status >=3}">
+                <td>配送</td>
+                <td></td>
+                <td th:text="${order.designee.nickname}"></td>
+                <td th:text="${#dates.format(order.receiptTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            <tr th:if="${order.status >=5}">
+                <td>顾客确认收货</td>
+                <td></td>
+                <td th:text="${order.creator.nickname}"></td>
+                <td th:text="${#dates.format(order.deliveryTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            <tr th:if="${order.status >=6}">
+                <td>评价</td>
+                <td th:text="${order.evaluateContent}"></td>
+                <td th:text="${order.creator.nickname}"></td>
+                <td th:text="${#dates.format(order.evaluateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+
+            </tbody>
         </table>
     </div>
     <footer class="pt-4 my-md-5 pt-md-5 border-top">

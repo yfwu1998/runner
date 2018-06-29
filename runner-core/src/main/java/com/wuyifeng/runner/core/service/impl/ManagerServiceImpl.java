@@ -1,13 +1,16 @@
 package com.wuyifeng.runner.core.service.impl;
 
+import com.wuyifeng.runner.core.domain.Customer;
 import com.wuyifeng.runner.core.domain.Manager;
 import com.wuyifeng.runner.core.repository.ManagerRepository;
 import com.wuyifeng.runner.core.service.ManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
 
+    @Autowired
     private ManagerRepository managerRepository;
 
     @Override
