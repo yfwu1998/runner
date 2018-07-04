@@ -1,0 +1,196 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>跑腿小子-后台管理</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/azthink/css/app.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">帮跑小子后台管理</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+
+
+            </ul>
+
+            <ul class="navbar-nav mt-2 mt-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/manager/profile}" th:text="${session.manager.nickname}">李忠</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/publiz/logout}">注销</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/order/index}">
+                            <span data-feather="bar-chart-2"></span>
+                            订单管理 <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customer/index}">
+                            <span data-feather="users"></span>
+                            客户管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">订单管理
+                    <small>订单指派</small>
+                </h1>
+            </div>
+            <div th:if="${tip} != null" class="alert alert-success" th:text="${tip}"></div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>订单类型</th>
+                        <th>收货人姓名</th>
+                        <th>收货人电话</th>
+                        <th>送货人姓名</th>
+                        <th>送货人电话</th>
+                        <th>帮送/买/取物品</th>
+                        <th>取货地址</th>
+                        <th>买货商店</th>
+                        <th>订单状态</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>#</td>
+                        <td>
+                            <span th:if="${order.type == 1}">帮买</span>
+                            <span th:if="${order.type == 2}">帮送</span>
+                            <span th:if="${order.type == 3}">帮取</span>
+                        </td>
+                        <td th:text="${order.consignee}">#</td>
+                        <td th:text="${order.consigneeMobile}">#</td>
+                        <td th:text="${order.consigner}">#</td>
+                        <td th:text="${order.consignerMobile}">#</td>
+                        <td th:text="${order.goods}">#</td>
+                        <td th:text="${order.pickupAddress}">#</td>
+                        <td th:text="${order.store}">#</td>
+                        <td>
+                            <span th:if="${order.status == 1}">下单成功</span>
+                            <span th:if="${order.status == 2}">已指派</span>
+                            <span th:if="${order.status == 3}">配送中</span>
+                            <span th:if="${order.status == 4}">已送达</span>
+                            <span th:if="${order.status == 5}">已收货</span>
+                            <span th:if="${order.status == 6}">已评价</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>操作类型</th>
+                        <th>操作内容</th>
+                        <th>操作用户</th>
+                        <th>操作时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>下单</td>
+                        <td></td>
+                        <td th:text="${order.creator.nickname}"></td>
+                        <td th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+
+                    <tr th:if="${order.status >=2}">
+                        <td>指派</td>
+                        <td th:text="${order.designee.nickname}"></td>
+                        <td th:text="${order.assignor.nickname}"></td>
+                        <td th:text="${#dates.format(order.assignTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr th:if="${order.status >=3}">
+                        <td>配送</td>
+                        <td></td>
+                        <td th:text="${order.designee.nickname}"></td>
+                        <td th:text="${#dates.format(order.receiptTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr th:if="${order.status >=4}">
+                        <td>送达</td>
+                        <td></td>
+                        <td th:text="${order.designee.nickname}"></td>
+                        <td th:text="${#dates.format(order.sendToTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr th:if="${order.status >=5}">
+                        <td>顾客确认收货</td>
+                        <td></td>
+                        <td th:text="${order.creator.nickname}"></td>
+                        <td th:text="${#dates.format(order.deliveryTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+                    <tr th:if="${order.status >=6}">
+                        <td>评价</td>
+                        <td th:text="${order.evaluateContent}"></td>
+                        <td th:text="${order.creator.nickname}"></td>
+                        <td th:text="${#dates.format(order.evaluateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <form th:action="@{/order/assign}" method="post">
+                    <div class="form-group">
+                        <label for="assign">指派给</label>
+                        <select class="form-control" name="distributorId" id="assign">
+                            <option th:each="distributor : ${distributors}" th:value="${distributor.id}"
+                                    th:text="${distributor.nickname}"></option>
+
+                        </select>
+                    </div>
+                    <input type="hidden" name="id" th:value="${order.id}"/>
+                    <button type="submit" class="btn btn-primary">指派</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>

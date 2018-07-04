@@ -4,6 +4,8 @@ import com.wuyifeng.runner.core.domain.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface CustomerService {
 
     /**
@@ -56,8 +58,16 @@ public interface CustomerService {
      * @param status(2:通过，9：不通过)
      * @return
      */
-    public Boolean confirmToDistributor(Long id, Integer status) throws Exception;
+    public Customer confirmToDistributor(Long id, Integer status) throws Exception;
+
+
+    /**
+     * 获取所有配送员信息
+     * @return
+     */
+    public List<Customer> listAllDistributor();
 
 //    注册、登录、顾客列表（分页）、顾客详情、修改顾客，申请配送资格，确认配送资格
+
 
 }

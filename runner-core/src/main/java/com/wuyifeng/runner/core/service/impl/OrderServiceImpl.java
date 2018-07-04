@@ -4,6 +4,7 @@ import com.wuyifeng.runner.core.domain.Customer;
 import com.wuyifeng.runner.core.domain.Manager;
 import com.wuyifeng.runner.core.domain.Order;
 import com.wuyifeng.runner.core.repository.CustomerRepository;
+import com.wuyifeng.runner.core.repository.ManagerRepository;
 import com.wuyifeng.runner.core.repository.OrderRepository;
 import com.wuyifeng.runner.core.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import javax.persistence.Transient;
 import java.util.Date;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private ManagerRepository managerRepository;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -86,6 +90,7 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.save(order);
     }
 
+
     @Transient
     @Override
     public Order modify(Order order) {
@@ -95,9 +100,12 @@ public class OrderServiceImpl implements OrderService{
     @Transient
     @Override
     public Order assign(Long orderId, Long assignorId, Long designeeId) {
-        Manager manager = new Manager(assignorId);
 
-        Customer customer = new Customer(designeeId);
+
+        //Manager manager = new Manager(assignorId);
+        //Customer customer = new Customer(designeeId);
+        Manager manager = managerRepository.findOne(assignorId);
+        Customer customer = customerRepository.findOne(designeeId);
 
         //指派订单，订单状态改为2：已指派
         Order order = orderRepository.findOne(orderId);
@@ -107,5 +115,18 @@ public class OrderServiceImpl implements OrderService{
         order.setAssignTime(new Date());
 
         return orderRepository.save(order);
+    }
+
+    @Override
+    public Page<Order> listForCustomer(Long customerId, Pageable pageable) {
+        //创建Example实例
+        Customer creator = customerRepository.findOne(customerId);
+        return orderRepository.findByCreator(creator, pageable);
+    }
+
+    @Override
+    public Page<Order> listForDistributor(Long distributorId, Pageable pageable) {
+        Customer distributor = customerRepository.findOne(distributorId);
+        return orderRepository.findByDesignee(distributor, pageable);
     }
 }

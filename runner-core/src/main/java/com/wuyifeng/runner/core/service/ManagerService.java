@@ -26,4 +26,6 @@ public interface ManagerService {
      * @return
      */
     public Manager modifyPwd(Long id, String newPwd);
+
+    public Manager create(Manager manager);
 }

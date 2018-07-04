@@ -113,12 +113,23 @@ public class PublizController {
         }
     }
 
+    /**
+     * 退出登录
+     * @return
+     */
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("customer");
+        //重定向到订单的首页
+        return "redirect:/publiz/login";
+    }
+
     private String getErrorMessage(BindingResult bindingResult){
         StringBuilder errorMsg = new StringBuilder();
         int i = 0;
         for (ObjectError error : bindingResult.getAllErrors()) {
             if (i != 0) {
-                errorMsg.append(error.getDefaultMessage() + "<br/>");
+                errorMsg.append("<br/>");
             }
             errorMsg.append(error.getDefaultMessage());
             i++;

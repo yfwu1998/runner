@@ -1,0 +1,131 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>客户个人页面</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<!-- 导航条-->
+<nav class="navbar navbar-expand-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">帮跑小子</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav nav justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
+                </li>
+                <li class="nav-item" th:if="${session.customer.type ==2}">
+                    <a class="nav-link" th:href="@{/order/lists2}">我的配送</a>
+                </li>
+            </ul>
+
+        </div>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/customer/profile}"
+           th:text="${session.customer.nickname}"></a>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/publiz/logout}">注销</a>
+    </div>
+</nav>
+<div class="container-fluid" style="background-color: #e9ecef; padding-top: 20px; padding-bottom: 20px;">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">帮跑小子</h1>
+        <p class="lead">
+            帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
+        </p>
+        <hr class="my-4"/>
+        <div class="row">
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-primary">帮我买</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-outline-primary">帮我送</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-outline-primary">帮我取</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div th:if="${tip} != null" class="alert alert-success" th:text="${tip}"></div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>登录账号</th>
+                <th>客户昵称</th>
+                <th>登录密码</th>
+                <th>是否配送员</th>
+                <th>申请状态</th>
+                <th>手机号码</th>
+                <th>注册时间</th>
+                <th>操作</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>#</td>
+                <td th:text="${customer.username}">#</td>
+                <td th:text="${customer.nickname}">#</td>
+                <td th:text="${customer.password}">#</td>
+                <td>
+                   <span th:if="${customer.type == 1}">否
+
+                   </span>
+                    <span th:if="${customer.type == 2}">是</span>
+                </td>
+                <td>
+                   <span th:if="${customer.applyStatus == 0}">未申请
+                    <a th:href="@{/customer/apply}">申请</a>
+                   </span>
+                    <span th:if="${customer.applyStatus == 1}">申请中</span>
+                    <span th:if="${customer.applyStatus == 2}">申请通过</span>
+                    <span th:if="${customer.applyStatus == 9}">申请不通过
+                    <a th:href="@{/customer/apply}">申请</a>
+                   </span>
+                </td>
+
+                <td th:text="${customer.mobile}">#</td>
+                <td th:text="${#dates.format(customer.registTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<hr/>
+<footer class="container">
+    <p>© 2017-2018 帮跑小子</p>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -107,10 +107,11 @@
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72"
              height="72"/>
         <h1 class="h3 mb-3 font-weight-normal">下单页面(帮我取)</h1>
-        <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a
-                href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a>
+        <p>
+            <strong>帮跑小子</strong>，帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
         </p>
-        <div th:if="${errorMsg} != null" class="alert alert-danger" th:html="${errorMsg}"></div>
+        <div th:if="${errorMsg} != null" class="alert alert-danger" th:utext="${errorMsg}"></div>
     </div>
     <div class="form-label-group">
         <input type="text" id="pickupAddress" name="pickupAddress" class="form-control" placeholder="Email address"/>

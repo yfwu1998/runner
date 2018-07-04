@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Floating labels example for Bootstrap</title>
+    <title>用户登录-帮跑小子</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -104,12 +104,13 @@
 <body>
 <form class="form-signin" th:action="@{/publiz/login}" method="post">
     <div class="text-center mb-4">
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
-        <h1 class="h3 mb-3 font-weight-normal">用户登录</h1>
-        <p>Build form controls with floating labels via the <code>:placeholder-shown</code> pseudo-element. <a
-                href="https://caniuse.com/#feat=css-placeholder-shown">Works in latest Chrome, Safari, and Firefox.</a>
+        <h1 class="font-weight-normal">帮跑小子</h1>
+        <h3 class="h3 mb-3 font-weight-normal">用户登录</h3>
+        <p>
+            <strong>帮跑小子</strong>，帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
         </p>
-        <div th:if="${errorMsg} != null" class="alert alert-danger" th:text="${errorMsg}"></div>
+        <div th:if="${errorMsg} != null" class="alert alert-danger" th:utext="${errorMsg}"></div>
     </div>
     <div class="form-label-group">
         <input type="text" id="username" name="username" class="form-control" placeholder="Email address"/>
@@ -123,11 +124,11 @@
 
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"/> Remember me
+            <input type="checkbox" value="remember-me"/> 记住我
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018 <a th:href="@{/publiz/register}">去注册</a></p>
 </form>
 </body>
 </html>

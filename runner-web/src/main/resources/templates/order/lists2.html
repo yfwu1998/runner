@@ -1,0 +1,139 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>我的配送</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<!-- 导航条-->
+<nav class="navbar navbar-expand-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">帮跑小子</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav nav justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
+                </li>
+                <li class="nav-item" th:if="${session.customer.type ==2}">
+                    <a class="nav-link" th:href="@{/order/lists2}">我的配送</a>
+                </li>
+            </ul>
+
+        </div>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/customer/profile}"
+           th:text="${session.customer.nickname}"></a>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/publiz/logout}">注销</a>
+    </div>
+</nav>
+<div class="container-fluid" style="background-color: #e9ecef; padding-top: 20px; padding-bottom: 20px;">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">帮跑小子</h1>
+        <p class="lead">
+            帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
+        </p>
+        <hr class="my-4"/>
+        <div class="row">
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-primary">帮我买</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-outline-primary">帮我送</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-outline-primary">帮我取</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <h5 class="display-4">我的配送</h5>
+       <table class="table">
+           <thead>
+           <tr>
+               <th>#</th>
+               <th>订单类型</th>
+               <th>收货人姓名</th>
+               <th>收货人电话</th>
+               <th>送货人姓名</th>
+               <th>送货人电话</th>
+               <th>帮送/买/取物品</th>
+               <th>取货地址</th>
+               <th>买货商店</th>
+               <th>订单状态</th>
+               <th>操作</th>
+           </tr>
+           </thead>
+           <tbody>
+           <tr th:each="item : ${page.content}">
+               <td>#</td>
+               <td>
+                   <span th:if="${item.type == 1}">帮买</span>
+                   <span th:if="${item.type == 2}">帮送</span>
+                   <span th:if="${item.type == 3}">帮取</span>
+               </td>
+               <td th:text="${item.consignee}">#</td>
+               <td th:text="${item.consigneeMobile}">#</td>
+               <td th:text="${item.consigner}">#</td>
+               <td th:text="${item.consignerMobile}">#</td>
+               <td th:text="${item.goods}">#</td>
+               <td th:text="${item.pickupAddress}">#</td>
+               <td th:text="${item.store}">#</td>
+               <td>
+                   <span th:if="${item.status == 1}">下单成功</span>
+                   <span th:if="${item.status == 2}">已指派</span>
+                   <span th:if="${item.status == 3}">配送中</span>
+                   <span th:if="${item.status == 4}">已送达</span>
+                   <span th:if="${item.status == 5}">已收货</span>
+                   <span th:if="${item.status == 6}">已评价</span>
+               </td>
+               <td>
+                   <a th:if="${item.status == 2}" th:href="@{/order/receipt(id=${item.id})}">领取订单</a>
+                   <a th:if="${item.status == 3}" th:href="@{/order/sendTo(id=${item.id})}">确认送达</a>
+               </td>
+           </tr>
+           </tbody>
+           <tfoot>
+           <tr>
+               <td colspan="11">
+                   <a th:href="@{/order/lists(start=0)}">[首页]</a>&nbsp;&nbsp;
+                   <a th:if="${not page.isFirst()}" th:href="@{/order/lists(start=${page.number-1})}">[上页]</a>&nbsp;&nbsp;
+                   <a th:if="${not page.isLast()}" th:href="@{/order/lists(start=${page.number+1})}">[下页]</a>&nbsp;&nbsp;
+                   <a th:href="@{/order/lists(start=${page.totalPages-1})}">[末页]</a>
+               </td>
+           </tr>
+           </tfoot>
+       </table>
+    </div>
+
+</div>
+<hr/>
+<footer class="container">
+    <p>© 2017-2018 帮跑小子</p>
+</footer>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

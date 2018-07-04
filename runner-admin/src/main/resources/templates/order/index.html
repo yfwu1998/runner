@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>跑腿小子-后台管理</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/azthink/css/app.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">帮跑小子后台管理</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+
+
+            </ul>
+
+            <ul class="navbar-nav mt-2 mt-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/manager/profile}" th:text="${session.manager.nickname}">李忠</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/publiz/logout}">注销</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/order/index}">
+                            <span data-feather="bar-chart-2"></span>
+                            <span>订单管理</span><span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/customer/index}">
+                            <span data-feather="users"></span>
+                            客户管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h3 class="h3">订单列表</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>订单类型</th>
+                        <th>收货人姓名</th>
+                        <th>收货人电话</th>
+                        <th>送货人姓名</th>
+                        <th>送货人电话</th>
+                        <th>帮送/买/取物品</th>
+                        <th>取货地址</th>
+                        <th>买货商店</th>
+                        <th>订单状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="item : ${page.content}">
+                        <td>#</td>
+                        <td>
+                            <span th:if="${item.type == 1}">帮买</span>
+                            <span th:if="${item.type == 2}">帮送</span>
+                            <span th:if="${item.type == 3}">帮取</span>
+                        </td>
+                        <td th:text="${item.consignee}">#</td>
+                        <td th:text="${item.consigneeMobile}">#</td>
+                        <td th:text="${item.consigner}">#</td>
+                        <td th:text="${item.consignerMobile}">#</td>
+                        <td th:text="${item.goods}">#</td>
+                        <td th:text="${item.pickupAddress}">#</td>
+                        <td th:text="${item.store}">#</td>
+                        <td>
+                            <span th:if="${item.status == 1}">下单成功</span>
+                            <span th:if="${item.status == 2}">已指派</span>
+                            <span th:if="${item.status == 3}">配送中</span>
+                            <span th:if="${item.status == 4}">已送达</span>
+                            <span th:if="${item.status == 5}">已收货</span>
+                            <span th:if="${item.status == 6}">已评价</span>
+                        </td>
+                        <td>
+                            <a th:href="@{/order/assign(id=${item.id})}">指派</a>
+                            <a th:href="@{/order/evaluate(id=${item.id})}">修改</a>
+                            <a th:href="@{/order/detail(id=${item.id})}">详情</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>

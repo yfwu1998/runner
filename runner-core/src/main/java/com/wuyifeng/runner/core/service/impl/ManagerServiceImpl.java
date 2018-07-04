@@ -29,4 +29,9 @@ public class ManagerServiceImpl implements ManagerService {
         manager.setPassword(newPwd);
         return managerRepository.save(manager);
     }
+
+    @Override
+    public Manager create(Manager manager) {
+        return managerRepository.save(manager);
+    }
 }

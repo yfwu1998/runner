@@ -14,31 +14,55 @@
 </head>
 <body>
 <!-- 导航条-->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">帮跑小子</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
-            aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">帮跑小子</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+                aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="navbar-collapse collapse" id="navbarsExample03" style="">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-order">
-                <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-order active">
-                <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
-            </li>
-        </ul>
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav nav justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
+                </li>
+                <li class="nav-item" th:if="${session.customer.type ==2}">
+                    <a class="nav-link" th:href="@{/order/lists2}">我的配送</a>
+                </li>
+            </ul>
 
+        </div>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/customer/profile}"
+           th:text="${session.customer.nickname}"></a>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/publiz/logout}">注销</a>
     </div>
 </nav>
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Pricing</h1>
-    <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example.
-        It's built with default Bootstrap components and utilities with little customization.</p>
+<div class="container-fluid" style="background-color: #e9ecef; padding-top: 20px; padding-bottom: 20px;">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">帮跑小子</h1>
+        <p class="lead">
+            帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
+        </p>
+        <hr class="my-4"/>
+        <div class="row">
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-primary">帮我买</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-outline-primary">帮我送</a>
+            </div>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-outline-primary">帮我取</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div th:if="${tip} != null" class="alert alert-success" th:text="${tip}"></div>
         <table class="table">
@@ -130,45 +154,12 @@
             <button class="btn btn-lg btn-primary" type="submit">提交评价</button>
         </form>
     </div>
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
-            <div class="col-12 col-md">
-                <img class="mb-2" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="24"
-                     height="24"/>
-                <small class="d-block mb-3 text-muted">© 2017-2018</small>
-            </div>
-            <div class="col-6 col-md">
 
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Cool stuff</a></li>
-                    <li><a class="text-muted" href="#">Random feature</a></li>
-                    <li><a class="text-muted" href="#">Team feature</a></li>
-                    <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                    <li><a class="text-muted" href="#">Another one</a></li>
-                    <li><a class="text-muted" href="#">Last time</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Resource</a></li>
-                    <li><a class="text-muted" href="#">Resource name</a></li>
-                    <li><a class="text-muted" href="#">Another resource</a></li>
-                    <li><a class="text-muted" href="#">Final resource</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>About</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Team</a></li>
-                    <li><a class="text-muted" href="#">Locations</a></li>
-                    <li><a class="text-muted" href="#">Privacy</a></li>
-                    <li><a class="text-muted" href="#">Terms</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 </div>
+<hr/>
+<footer class="container">
+    <p>© 2017-2018 帮跑小子</p>
+</footer>
 
 
 <!-- Bootstrap core JavaScript

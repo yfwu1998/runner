@@ -6,128 +6,81 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>客户下单页面</title>
+    <title>下单首页-帮跑小子</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <style type="text/css" rel="stylesheet">
-
+    <style>
+        #jumbotron {
+            height: 450px;
+            background: url(//fe.imdada.cn/crane/1.11.45/images/bg.337719.jpg) no-repeat;
+            background-position: center;
+            background-size: auto 100%;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 <!-- 导航条-->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">哪都通跑腿</a>
+<nav class="navbar navbar-expand-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">帮跑小子</a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample03"
                 aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="navbar-collapse collapse" id="navbarsExample03" style="">
-            <ul class="navbar-nav mr-auto">
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav nav justify-content-end">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/order/index}">我要下单</a>
+                    <a class="nav-link" th:href="@{/order/index}">我要下单 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/order/lists}">我的订单</a>
                 </li>
+                <li class="nav-item" th:if="${session.customer.type ==2}">
+                    <a class="nav-link" th:href="@{/order/lists2}">我的配送</a>
+                </li>
             </ul>
 
         </div>
-    </nav>
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">哪都通跑腿</h1>
-        <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap
-            example.
-            It's built with default Bootstrap components and utilities with little customization.</p>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/customer/profile}"
+           th:text="${session.customer.nickname}"></a>
+        <a class="btn btn-link" th:if="${session.customer != null}" th:href="@{/publiz/logout}">注销</a>
     </div>
-    <div class="container">
-        <!--<div class="card-deck mb-3 text-center">-->
-            <!--<div class=" mb-4 box-shadow">-->
-                <!--<a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-outline-primary">帮我买</a>-->
-            <!--</div>-->
-            <!--<div class=" mb-4 box-shadow">-->
-                <!--<a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-primary">帮我送</a>-->
-            <!--</div>-->
-            <!--<div class=" mb-4 box-shadow">-->
-                <!--<a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-primary">帮我取</a>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
+</nav>
+<div class="container-fluid" style="background-color: #e9ecef; padding-top: 20px; padding-bottom: 20px;">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">帮跑小子</h1>
+        <p class="lead">
+            帮取件、代送件、400万配送员为您服务
+            1分钟响应、15分钟极速揽件、覆盖全城
+        </p>
+        <hr class="my-4"/>
         <div class="row">
-            <div class="col-md-4">
-                <h2>帮我买</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                    magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" th:href="@{/order/addForSell}" role="button">去下单 &raquo;</a></p>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForSell}" class="btn btn-lg btn-block btn-primary">帮我买</a>
             </div>
-            <div class="col-md-4">
-                <h2>帮我送</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                    magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" th:href="@{/order/addForDeliver}" role="button">去下单 &raquo;</a></p>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForDeliver}" class="btn btn-lg btn-block btn-outline-primary">帮我送</a>
             </div>
-            <div class="col-md-4">
-                <h2>帮我取</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                    magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" th:href="@{/order/addForTake}" role="button">去下单 &raquo;</a></p>
+            <div class="col-sm-4 box-shadow">
+                <a th:href="@{/order/addForTake}" class="btn btn-lg btn-block btn-outline-primary">帮我取</a>
             </div>
         </div>
-
-
-
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
-            <div class="row">
-                <div class="col-12 col-md">
-                    <img class="mb-2" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt=""
-                         width="24"
-                         height="24"/>
-                    <small class="d-block mb-3 text-muted">© 2017-2018</small>
-                </div>
-                <div class="col-6 col-md">
-
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Cool stuff</a></li>
-                        <li><a class="text-muted" href="#">Random feature</a></li>
-                        <li><a class="text-muted" href="#">Team feature</a></li>
-                        <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                        <li><a class="text-muted" href="#">Another one</a></li>
-                        <li><a class="text-muted" href="#">Last time</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Resources</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Resource</a></li>
-                        <li><a class="text-muted" href="#">Resource name</a></li>
-                        <li><a class="text-muted" href="#">Another resource</a></li>
-                        <li><a class="text-muted" href="#">Final resource</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>About</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Team</a></li>
-                        <li><a class="text-muted" href="#">Locations</a></li>
-                        <li><a class="text-muted" href="#">Privacy</a></li>
-                        <li><a class="text-muted" href="#">Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
     </div>
+</div>
+
+<hr/>
+<footer class="container">
+    <p>© 2017-2018 帮跑小子</p>
+</footer>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>
