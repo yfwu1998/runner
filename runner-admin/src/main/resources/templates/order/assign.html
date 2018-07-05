@@ -6,19 +6,24 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
-    <title>跑腿小子-后台管理</title>
+    <title>哪都通跑腿-后台管理</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <link th:href="@{/azthink/css/app.css}" rel="stylesheet"/>
+    <style>
+        .navbar{
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+    </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">帮跑小子后台管理</a>
+        <a class="navbar-brand" href="#">哪都通跑腿后台管理</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,7 +36,7 @@
 
             <ul class="navbar-nav mt-2 mt-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/manager/profile}" th:text="${session.manager.nickname}">李忠</a>
+                    <a class="nav-link" th:href="@{/manager/profile}" th:text="${session.manager.nickname}"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/publiz/logout}">注销</a>
@@ -45,7 +50,7 @@
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
+            <div class="sidebar-sticky" style="margin: 0 auto;text-align: center">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/order/index}">

@@ -12,26 +12,36 @@
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
 
     <style>
-        .one{
+        .one {
             color: #ffffff;
         }
-        .one:hover{
+
+        .one:hover {
             text-decoration: none;
             color: #0066ff;
         }
-        .col-md-4{
+
+        .col-md-4 {
             border-right: #FF8C00 solid 1px;
         }
-        .col-md-4 a.btn:hover{
+
+        .col-md-4 a.btn:hover {
             background: #0066ff;
             border: none;
         }
-        .jumbotron{
-            /*background: url(//fe.imdada.cn/crane/1.11.45/images/bg.337719.jpg) no-repeat;*/
-            background: #FF8C00;
+
+        .jumbotron {
+            background: url(http://pic.616pic.com/bg_w1180/00/06/21/2jioR2eDqV.jpg!/fw/1120) repeat-x;
+            background-size:100%,100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             background-size: auto 100%;
+            /*background-attachment: fixed;*/
             background-position: center;
+            font-family: "Microsoft YaHei";
+            color: 	#F5F5F5;
         }
     </style>
 </head>
@@ -39,7 +49,8 @@
 <!-- 导航条-->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="padding-left: 200px">
     <a class="navbar-brand" href="#">哪都通跑腿</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -57,9 +68,11 @@
 
         </ul>
 
+
         <a class="btn btn-link one" th:if="${session.customer != null}" th:href="@{/customer/profile}"
            th:text="${session.customer.nickname}"></a>
-        <a style="padding-right: 200px" class="btn btn-link one" th:if="${session.customer != null}" th:href="@{/publiz/logout}">注销</a>
+        <a style="padding-right: 200px" class="btn btn-link one" th:if="${session.customer != null}"
+           th:href="@{/publiz/logout}">注销</a>
 
     </div>
 </nav>
@@ -78,19 +91,22 @@
         <div class="col-md-4">
             <h2>帮我买</h2>
             <p>同城跑腿，1分钟响应、15分钟极速揽件，让你体验到飞一般的感觉。 同城跑腿，使命必达!</p>
-            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general feeling of flying.The same city running legs, mission must reach!</p>
+            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general
+                feeling of flying.The same city running legs, mission must reach!</p>
             <p><a class="btn btn-secondary" th:href="@{/order/addForSell}" role="button">去下单 &raquo;</a></p>
         </div>
         <div class="col-md-4">
             <h2>帮我送</h2>
             <p>同城跑腿，1分钟响应、15分钟极速揽件，让你体验到飞一般的感觉。 同城跑腿，使命必达!</p>
-            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general feeling of flying.The same city running legs, mission must reach!</p>
+            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general
+                feeling of flying.The same city running legs, mission must reach!</p>
             <p><a class="btn btn-secondary" th:href="@{/order/addForDeliver}" role="button">去下单 &raquo;</a></p>
         </div>
         <div class="col-md-4">
             <h2>帮我取</h2>
             <p>同城跑腿，1分钟响应、15分钟极速揽件，让你体验到飞一般的感觉。 同城跑腿，使命必达!</p>
-            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general feeling of flying.The same city running legs, mission must reach!</p>
+            <p>The city running errands, 1 minute response, 15 minute speed pieces, let you experience the general
+                feeling of flying.The same city running legs, mission must reach!</p>
             <p><a class="btn btn-secondary" th:href="@{/order/addForTake}" role="button">去下单 &raquo;</a></p>
         </div>
     </div>
