@@ -198,7 +198,7 @@ public class OrderController {
      */
     @GetMapping("/lists")
     public String lists(@RequestParam(defaultValue = "0", value = "start") Integer start,
-                        @RequestParam(defaultValue = "2", value = "limit") Integer limit,
+                        @RequestParam(defaultValue = "5", value = "limit") Integer limit,
                         HttpSession session, Model model) {
 
         Customer customer = (Customer) session.getAttribute("customer");

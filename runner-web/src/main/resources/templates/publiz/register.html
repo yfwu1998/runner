@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>用户注册-帮跑小子</title>
+    <title>用户注册-哪都通跑腿</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
@@ -105,9 +105,10 @@
 <form class="form-signin" th:action="@{/publiz/register}" method="post">
     <div class="text-center mb-4">
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"/>
-        <h1 class="h3 mb-3 font-weight-normal">用户注册</h1>
+        <h1 class="font-weight-normal">哪都通跑腿</h1>
+        <h3 class="h3 mb-3 font-weight-normal">用户注册</h3>
         <p>
-            <strong>帮跑小子</strong>，帮取件、代送件、400万配送员为您服务
+            <strong>哪都通跑腿</strong>，帮取件、代送件、400万配送员为您服务
             1分钟响应、15分钟极速揽件、覆盖全城
         </p>
         <div th:if="${errorMsg} != null" class="alert alert-danger" th:utext="${errorMsg}"></div>
