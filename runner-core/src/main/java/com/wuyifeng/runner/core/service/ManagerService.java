@@ -1,8 +1,16 @@
 package com.wuyifeng.runner.core.service;
 
+import com.wuyifeng.runner.core.domain.Customer;
 import com.wuyifeng.runner.core.domain.Manager;
 
 public interface ManagerService {
+
+    /**
+     * 顾客注册
+     * @param customer
+     * @return
+     */
+    public Manager register(Manager manager);
 
     /**
      * 管理员登录

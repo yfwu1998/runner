@@ -35,6 +35,8 @@ public class Order {
 
     private Integer type;//1：帮我买，2：帮我送，3：帮我取
 
+
+
     // 谁下单
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")

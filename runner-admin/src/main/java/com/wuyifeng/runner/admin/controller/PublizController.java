@@ -1,6 +1,7 @@
 package com.wuyifeng.runner.admin.controller;
 
 import com.wuyifeng.runner.admin.form.LoginForm;
+import com.wuyifeng.runner.admin.form.RegisterForm;
 import com.wuyifeng.runner.core.domain.Customer;
 import com.wuyifeng.runner.core.domain.Manager;
 import com.wuyifeng.runner.core.service.ManagerService;
@@ -25,6 +26,44 @@ public class PublizController {
 
     @Autowired
     public ManagerService managerService;
+
+
+    //进入注册页面
+    @GetMapping("/register")
+    public String register() {
+        return "publiz/register";
+    }
+
+    //执行注册操作
+    @PostMapping("/register")
+    public String register(@Validated RegisterForm registerForm,
+                           BindingResult bindingResult,
+                           Model model) {
+
+        //
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errorMsg", getErrorMessage(bindingResult));
+            return "publiz/register";
+        }
+
+        Manager manager = new Manager(
+                registerForm.getUsername(),
+                registerForm.getNickname(),
+                registerForm.getPassword());
+
+        Manager result = managerService.register(manager);
+        if (result != null) {
+            //注册成功,跳转到登录界面，并携带相关提示信息
+
+            return "publiz/regsuccess";
+        } else {
+            //注册失败
+            return null;
+        }
+
+    }
+
 
     @GetMapping("/login")
     public String login(){

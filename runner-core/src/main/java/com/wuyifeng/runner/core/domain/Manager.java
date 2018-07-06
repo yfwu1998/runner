@@ -25,6 +25,11 @@ public class Manager {
 
     private Integer status;
 
+    public Manager(String username, String nickname, String password){
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+    }
     public Manager(){}
 
     public Manager(Long id){

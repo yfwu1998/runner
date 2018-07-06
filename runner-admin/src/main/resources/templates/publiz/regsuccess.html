@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Floating labels example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div class="container-fluid text-center">
+    <h1 class="display-4" style="margin-top: 20px;">你已注册成功，请登录系统</h1>
+    <div>进入 <a th:href="@{/order/lists}">登录</a></div>
+</div>
+</body>
+</html>

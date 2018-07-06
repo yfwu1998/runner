@@ -14,6 +14,11 @@ public class ManagerServiceImpl implements ManagerService {
     private ManagerRepository managerRepository;
 
     @Override
+    public Manager register(Manager manager) {
+        return managerRepository.save(manager);
+    }
+
+    @Override
     public Manager login(String username, String password) {
         return managerRepository.findByUsernameAndPassword(username, password);
     }
