@@ -5,7 +5,7 @@
     <parent>
         <artifactId>runner</artifactId>
         <groupId>com.wuyifeng</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.180702</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,13 +15,47 @@
         <dependency>
             <groupId>com.wuyifeng</groupId>
             <artifactId>runner-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.180702</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <!-- put your configurations here -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 项目打包插件 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- 指定项目打包程序主入口 -->
+    <properties>
+        <start-class>com.wuyifeng.runner.RunnerWebApplication</start-class>
+    </properties>
 
 </project>

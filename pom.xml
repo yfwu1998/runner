@@ -6,18 +6,12 @@
 
     <groupId>com.wuyifeng</groupId>
     <artifactId>runner</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>runner-core</module>
-        <module>runner-api</module>
-        <module>runner-admin</module>
-        <module>runner-web</module>
-    </modules>
+    <version>1.0.180702</version>
 
     <!--声明该项目是父级项目, 项目的打包类型：pom、jar、war-->
     <packaging>pom</packaging>
 
-    <!--参照Spring Boot 构建的项目，继承SpringBoot项目-->
+    <!--参照Spring Boot 构建的项目，-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -30,5 +24,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
+
+    <modules>
+        <module>runner-core</module>
+        <module>runner-api</module>
+        <module>runner-admin</module>
+        <module>runner-web</module>
+    </modules>
 
 </project>
