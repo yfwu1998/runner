@@ -102,38 +102,43 @@
 </head>
 
 <body>
-<form class="form-signin" th:action="@{/order/addForTake}" method="post">
-    <div class="text-center mb-4">
-        <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72"
-             height="72"/>
-        <h1 class="h3 mb-3 font-weight-normal">下单页面(帮我取)</h1>
-        <p>
-            <strong>哪都通跑腿</strong>，帮取件、代送件、400万配送员为您服务
-            1分钟响应、15分钟极速揽件、覆盖全城
-        </p>
-        <div th:if="${errorMsg} != null" class="alert alert-danger" th:utext="${errorMsg}"></div>
-    </div>
-    <div class="form-label-group">
-        <input type="text" id="pickupAddress" name="pickupAddress" class="form-control" placeholder="Email address"/>
-        <label for="pickupAddress">取货地址</label>
-    </div>
-    <div class="form-label-group">
-        <input type="text" id="consignee" name="consignee" class="form-control" placeholder="Email address"/>
-        <label for="consignee">收货人姓名</label>
-    </div>
-    <div class="form-label-group">
-        <input type="text" id="consigneeMobile" name="consigneeMobile" class="form-control"
-               placeholder="Email address"/>
-        <label for="consigneeMobile">收货人电话</label>
-    </div>
+<div style="position:relative">
+    <img style="position: center;" th:src="@{/runner/images/bj.png}"/>
+    <form class="form-signin" th:action="@{/order/addForTake}" method="post"
+          style="position:absolute;left:1050px;top:300px;">
+        <div class="text-center mb-4">
+            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72"
+                 height="72"/>
+            <h1 class="h3 mb-3 font-weight-normal">下单页面(帮我取)</h1>
+            <p>
+                <strong>哪都通跑腿</strong>，帮取件、代送件、400万配送员为您服务
+                1分钟响应、15分钟极速揽件、覆盖全城
+            </p>
+            <div th:if="${errorMsg} != null" class="alert alert-danger" th:utext="${errorMsg}"></div>
+        </div>
+        <div class="form-label-group">
+            <input type="text" id="pickupAddress" name="pickupAddress" class="form-control"
+                   placeholder="Email address"/>
+            <label for="pickupAddress">取货地址</label>
+        </div>
+        <div class="form-label-group">
+            <input type="text" id="consignee" name="consignee" class="form-control" placeholder="Email address"/>
+            <label for="consignee">收货人姓名</label>
+        </div>
+        <div class="form-label-group">
+            <input type="text" id="consigneeMobile" name="consigneeMobile" class="form-control"
+                   placeholder="Email address"/>
+            <label for="consigneeMobile">收货人电话</label>
+        </div>
 
-    <div class="form-label-group">
-        <input type="text" id="goods" name="goods" class="form-control" placeholder="Email address"/>
-        <label for="goods">要买物品</label>
-    </div>
+        <div class="form-label-group">
+            <input type="text" id="goods" name="goods" class="form-control" placeholder="Email address"/>
+            <label for="goods">要买物品</label>
+        </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">下单</button>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-</form>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">下单</button>
+        <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+    </form>
+</div>
 </body>
 </html>
